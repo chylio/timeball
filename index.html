@@ -666,6 +666,21 @@
                             
                             // In a real application, you would send formData to your server here
                             console.log('Form data to be sent to server:', formData);
+                            fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzD7eCE9jGGscNbRv9YGj4CG199L6TjIYchPczF381XKYr3j3ROcBJXxurY5sTPCsf7Ww/exec/exec', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+})
+.then(res => res.json())
+.then(response => {
+    console.log("成功送出到 Google Sheet", response);
+})
+.catch(err => {
+    console.error("送出失敗", err);
+});
+
                         }, 2000);
                     }, 1500);
                 }, 500);
