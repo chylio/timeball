@@ -20,7 +20,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
-        /* Enhanced 3D Gacha Machine */
+        /* Time Tunnel Globe Machine */
         .gacha-machine {
             width: 300px;
             height: 450px;
@@ -29,223 +29,362 @@
             perspective: 1000px;
         }
         
-        .gacha-top {
+        .globe-container {
+            position: absolute;
             width: 240px;
-            height: 120px;
-            background: linear-gradient(to bottom, #ff8a8a, #ff6b6b);
-            border-radius: 120px 120px 0 0;
-            position: absolute;
-            top: 0;
+            height: 240px;
+            top: 50px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 4px solid #e05555;
-            border-bottom: none;
+            perspective: 1000px;
         }
         
-        .gacha-top-shine {
-            width: 60px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            transform: rotate(-30deg);
-        }
-        
-        .gacha-glass {
-            width: 200px;
-            height: 200px;
-            background: rgba(173, 216, 230, 0.4);
+        .globe {
+            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
+            background: rgba(10, 20, 40, 0.7);
             box-shadow: 
-                inset 0 0 20px rgba(255, 255, 255, 0.5),
-                0 0 15px rgba(173, 216, 230, 0.7);
+                0 0 30px rgba(100, 150, 255, 0.5),
+                inset 0 0 60px rgba(100, 150, 255, 0.3);
             overflow: hidden;
-            border: 8px solid #e05555;
+            transform-style: preserve-3d;
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         
-        .glass-reflection {
+        .globe::before {
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             background: linear-gradient(135deg, 
                 rgba(255, 255, 255, 0.4) 0%, 
                 rgba(255, 255, 255, 0) 50%,
                 rgba(255, 255, 255, 0.1) 100%);
-            border-radius: 50%;
+            z-index: 5;
         }
         
-        .gacha-base {
-            width: 240px;
-            height: 100px;
-            background: linear-gradient(to bottom, #ff6b6b, #e05555);
+        .globe::after {
+            content: '';
             position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 90%;
+            height: 90%;
+            top: 5%;
+            left: 5%;
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
             z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 4px solid #e05555;
-            border-top: none;
         }
         
-        .gacha-bottom {
-            width: 280px;
-            height: 40px;
-            background: linear-gradient(to bottom, #e05555, #c04545);
+        .time-tunnel {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            border: 4px solid #c04545;
-        }
-        
-        .gacha-knob {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #ffdd80, #ffcc5c);
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at center, 
+                    rgba(30, 50, 100, 0) 0%, 
+                    rgba(30, 50, 100, 0.8) 50%, 
+                    rgba(10, 20, 40, 1) 100%),
+                conic-gradient(
+                    from 0deg,
+                    rgba(100, 150, 255, 0.2),
+                    rgba(100, 200, 255, 0.4),
+                    rgba(150, 200, 255, 0.6),
+                    rgba(200, 220, 255, 0.8),
+                    rgba(255, 255, 255, 1),
+                    rgba(200, 220, 255, 0.8),
+                    rgba(150, 200, 255, 0.6),
+                    rgba(100, 200, 255, 0.4),
+                    rgba(100, 150, 255, 0.2)
+                );
             border-radius: 50%;
-            position: absolute;
-            bottom: 85px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            box-shadow: 
-                0 5px 15px rgba(0, 0, 0, 0.2),
-                inset 0 -5px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s;
-            border: 4px solid #e0b050;
-        }
-        
-        .knob-detail {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #e0b050;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .gacha-knob:hover {
-            transform: translateX(-50%) scale(1.05);
-        }
-        
-        .gacha-slot {
-            width: 100px;
-            height: 25px;
-            background: #333;
-            border-radius: 12px;
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .gacha-feet {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #c04545;
-            border-radius: 50%;
-            bottom: 10px;
+            animation: rotate-tunnel 20s linear infinite;
             z-index: 1;
         }
         
-        .foot-1 { left: 70px; }
-        .foot-2 { right: 70px; }
+        @keyframes rotate-tunnel {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         
-        .paper-fold {
+        .time-spiral {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 180%;
+            height: 180%;
+            top: -40%;
+            left: -40%;
+            background: 
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    transparent 15deg,
+                    rgba(255, 255, 255, 0.1) 15deg,
+                    rgba(255, 255, 255, 0.1) 30deg
+                );
+            border-radius: 50%;
+            animation: rotate-spiral 15s linear infinite reverse;
+            z-index: 2;
+        }
+        
+        @keyframes rotate-spiral {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .time-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
             background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-flow 8s linear infinite;
+        }
+        
+        @keyframes particle-flow {
+            0% { 
+                transform: translate(calc(50% - 0px), calc(50% - 0px)) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(calc(50% - 100px), calc(50% - 100px)) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .globe-base {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(to bottom, #3a4a7a, #1a2a4a);
+            border-radius: 60px 60px 30px 30px;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.5);
+        }
+        
+        .globe-stand {
+            position: absolute;
+            width: 30px;
+            height: 80px;
+            background: linear-gradient(to bottom, #3a4a7a, #1a2a4a);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .globe-stand-base {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(to bottom, #3a4a7a, #1a2a4a);
+            border-radius: 10px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 150, 255, 0.5);
+        }
+        
+        .globe-ring {
+            position: absolute;
+            width: 260px;
+            height: 40px;
+            border: 8px solid #3a4a7a;
+            border-radius: 50%;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) rotateX(75deg);
+            z-index: 3;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-orb {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
             opacity: 0;
-            transition: all 1s;
+            transition: all 0.5s;
             z-index: 10;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .time-orb-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, 
+                    rgba(255, 255, 255, 0.9) 0%, 
+                    rgba(200, 220, 255, 0.7) 40%, 
+                    rgba(100, 150, 255, 0.5) 70%,
+                    rgba(50, 100, 200, 0.3) 100%);
+            overflow: hidden;
+        }
+        
+        .time-orb-spiral {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                conic-gradient(
+                    from 0deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.8),
+                    transparent,
+                    rgba(255, 255, 255, 0.8),
+                    transparent
+                );
+            animation: rotate-orb 3s linear infinite;
+        }
+        
+        @keyframes rotate-orb {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .time-orb-clock {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-radius: 50%;
+            border: 1px solid rgba(100, 150, 255, 0.5);
+        }
+        
+        .time-orb-hand {
+            position: absolute;
+            width: 1px;
+            height: 30%;
+            background: rgba(100, 150, 255, 0.8);
+            top: 20%;
+            left: 50%;
+            transform-origin: bottom center;
+            animation: rotate-hand 10s linear infinite;
+        }
+        
+        @keyframes rotate-hand {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .capsule {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            opacity: 1;
+            opacity: 0.7;
             z-index: 5;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
         
         @keyframes float {
             0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(5px, -5px) rotate(90deg); }
+            25% { transform: translate(10px, -10px) rotate(90deg); }
             50% { transform: translate(0, 0) rotate(180deg); }
-            75% { transform: translate(-5px, 5px) rotate(270deg); }
+            75% { transform: translate(-10px, 10px) rotate(270deg); }
             100% { transform: translate(0, 0) rotate(360deg); }
         }
         
         .floating {
-            animation: float 8s infinite ease-in-out;
+            animation: float 12s infinite ease-in-out;
         }
         
         .capsule-1 { 
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            background: radial-gradient(circle at center, rgba(255, 154, 158, 1) 0%, rgba(250, 208, 196, 0.7) 100%);
             top: 30%; 
             left: 30%;
         }
         .capsule-2 { 
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background: radial-gradient(circle at center, rgba(161, 196, 253, 1) 0%, rgba(194, 233, 251, 0.7) 100%);
             top: 60%; 
             left: 70%;
         }
         .capsule-3 { 
-            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            background: radial-gradient(circle at center, rgba(212, 252, 121, 1) 0%, rgba(150, 230, 161, 0.7) 100%);
             top: 40%; 
             left: 60%;
         }
         .capsule-4 { 
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            background: radial-gradient(circle at center, rgba(255, 236, 210, 1) 0%, rgba(252, 182, 159, 0.7) 100%);
             top: 70%; 
             left: 40%;
         }
         
-        @keyframes fold {
-            0% { transform: translate(-50%, -50%) scale(1) rotateY(0deg); }
-            25% { transform: translate(-50%, -50%) scale(0.9) rotateY(90deg); }
-            50% { transform: translate(-50%, -50%) scale(0.8) rotateY(180deg); }
-            75% { transform: translate(-50%, -50%) scale(0.7) rotateY(270deg); }
-            100% { transform: translate(-50%, -50%) scale(0.6) rotateY(360deg); }
+        @keyframes transform-to-orb {
+            0% { 
+                border-radius: 0%;
+                transform: translateX(-50%) scale(1) rotate(0deg);
+                box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+            }
+            50% { 
+                border-radius: 25%;
+                transform: translateX(-50%) scale(0.8) rotate(180deg);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            100% { 
+                border-radius: 50%;
+                transform: translateX(-50%) scale(0.6) rotate(360deg);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
         }
         
-        @keyframes drop {
-            0% { top: 50%; opacity: 1; }
-            100% { top: 120%; opacity: 0; }
+        @keyframes drop-into-tunnel {
+            0% { 
+                top: -50px; 
+                opacity: 1;
+                transform: translateX(-50%) scale(0.6);
+            }
+            50% { 
+                top: 60px; 
+                opacity: 1;
+                transform: translateX(-50%) scale(0.8);
+            }
+            70% {
+                top: 120px;
+                opacity: 1;
+                transform: translateX(-50%) scale(0.4);
+            }
+            100% { 
+                top: 120px; 
+                opacity: 0;
+                transform: translateX(-50%) scale(0.1);
+            }
         }
         
-        .fold-animation {
-            animation: fold 2s forwards;
+        .transform-animation {
+            animation: transform-to-orb 1.5s forwards;
         }
         
         .drop-animation {
-            animation: drop 1s forwards;
+            animation: drop-into-tunnel 2s forwards ease-in-out;
         }
         
         .success-message {
@@ -276,26 +415,24 @@
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
         
-        .decorative-star {
+        .globe-glow {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ffcc5c;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at center,
+                rgba(100, 150, 255, 0.3) 0%,
+                rgba(100, 150, 255, 0) 70%
+            );
+            z-index: 4;
+            pointer-events: none;
+            animation: pulse-glow 4s infinite alternate;
         }
         
-        .star-1 {
-            top: 20px;
-            right: 40px;
-            transform: rotate(15deg);
-        }
-        
-        .star-2 {
-            top: 50px;
-            left: 30px;
-            transform: rotate(-10deg);
-            width: 15px;
-            height: 15px;
+        @keyframes pulse-glow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
     </style>
 </head>
@@ -346,30 +483,32 @@
             
             <div class="md:w-1/3">
                 <div class="gacha-machine">
-                    <div class="gacha-top">
-                        <div class="gacha-top-shine"></div>
-                        <div class="decorative-star star-1"></div>
-                        <div class="decorative-star star-2"></div>
+                    <div class="globe-container">
+                        <div class="globe">
+                            <div class="time-tunnel"></div>
+                            <div class="time-spiral"></div>
+                            <div class="time-particles" id="timeParticles"></div>
+                            <div class="globe-glow"></div>
+                            <div class="capsule capsule-1 floating"></div>
+                            <div class="capsule capsule-2 floating" style="animation-delay: -3s;"></div>
+                            <div class="capsule capsule-3 floating" style="animation-delay: -6s;"></div>
+                            <div class="capsule capsule-4 floating" style="animation-delay: -9s;"></div>
+                        </div>
+                        <div class="globe-ring"></div>
+                        <div class="time-orb" id="timeOrb">
+                            <div class="time-orb-inner">
+                                <div class="time-orb-spiral"></div>
+                                <div class="time-orb-clock"></div>
+                                <div class="time-orb-hand"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gacha-glass" id="gachaGlass">
-                        <div class="glass-reflection"></div>
-                        <div class="capsule capsule-1 floating"></div>
-                        <div class="capsule capsule-2 floating" style="animation-delay: -2s;"></div>
-                        <div class="capsule capsule-3 floating" style="animation-delay: -4s;"></div>
-                        <div class="capsule capsule-4 floating" style="animation-delay: -6s;"></div>
-                        <div class="paper-fold" id="paperFold"></div>
-                    </div>
-                    <div class="gacha-base"></div>
-                    <div class="gacha-knob" id="gachaKnob">
-                        <div class="knob-detail"></div>
-                    </div>
-                    <div class="gacha-slot"></div>
-                    <div class="gacha-bottom"></div>
-                    <div class="gacha-feet foot-1"></div>
-                    <div class="gacha-feet foot-2"></div>
+                    <div class="globe-base"></div>
+                    <div class="globe-stand"></div>
+                    <div class="globe-stand-base"></div>
                 </div>
                 <div class="text-center mt-4 text-gray-600">
-                    <p>您的時光紙將被珍藏在扭蛋機中</p>
+                    <p>您的時光紙將穿越時光隧道</p>
                     <p>並在未來的某一天重新與您相遇</p>
                 </div>
             </div>
@@ -386,8 +525,8 @@
             <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">時光紙已成功珍藏！</h2>
-            <p class="text-gray-600 mb-4">您的回憶已被安全地存入時光扭蛋機，將在未來與您重逢。</p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">時光紙已成功穿越！</h2>
+            <p class="text-gray-600 mb-4">您的回憶已被安全地送入時光隧道，將在未來與您重逢。</p>
             <p class="text-sm text-gray-500">時光紙ID: <span id="capsuleId" class="font-mono">TM-20230901-001</span></p>
         </div>
     </div>
@@ -398,6 +537,9 @@
             const today = new Date();
             const formattedDate = today.toISOString().split('T')[0];
             document.getElementById('currentDate').value = formattedDate;
+            
+            // Create time particles
+            createTimeParticles();
             
             // Form submission
             document.getElementById('timeCapsuleForm').addEventListener('submit', function(e) {
@@ -424,40 +566,60 @@
                     id: generateCapsuleId()
                 };
                 
-                // Show paper folding animation
-                const paperFold = document.getElementById('paperFold');
-                paperFold.style.opacity = '1';
-                paperFold.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-                paperFold.classList.add('fold-animation');
+                // Generate random color for the orb glow
+                const colors = [
+                    'rgba(255, 154, 158, 0.8)',
+                    'rgba(161, 196, 253, 0.8)',
+                    'rgba(212, 252, 121, 0.8)',
+                    'rgba(255, 236, 210, 0.8)',
+                    'rgba(224, 195, 252, 0.8)'
+                ];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 
-                // After folding, drop the paper
+                // Show time orb animation
+                const timeOrb = document.getElementById('timeOrb');
+                timeOrb.style.opacity = '1';
+                timeOrb.style.boxShadow = `0 0 15px ${randomColor}`;
+                
+                // First transform paper to orb
                 setTimeout(() => {
-                    paperFold.classList.remove('fold-animation');
-                    paperFold.classList.add('drop-animation');
+                    timeOrb.classList.add('transform-animation');
                     
-                    // Rotate gacha knob
-                    const gachaKnob = document.getElementById('gachaKnob');
-                    gachaKnob.style.transform = 'translateX(-50%) rotate(360deg)';
-                    
-                    // Show success message after animation
+                    // After transformation, drop into tunnel
                     setTimeout(() => {
-                        document.getElementById('capsuleId').textContent = formData.id;
-                        document.getElementById('successMessage').style.display = 'flex';
-                        createConfetti();
+                        timeOrb.classList.remove('transform-animation');
+                        timeOrb.classList.add('drop-animation');
                         
-                        // Reset form and animations
-                        form.reset();
-                        document.getElementById('currentDate').value = formattedDate;
-                        paperFold.style.opacity = '0';
-                        paperFold.classList.remove('drop-animation');
-                        gachaKnob.style.transform = 'translateX(-50%)';
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = '提交我的時光紙';
-                        
-                        // In a real application, you would send formData to your server here
-                        console.log('Form data to be sent to server:', formData);
-                    }, 1000);
-                }, 2000);
+                        // Show success message after animation
+                        setTimeout(() => {
+                            document.getElementById('capsuleId').textContent = formData.id;
+                            document.getElementById('successMessage').style.display = 'flex';
+                            createConfetti();
+                            
+                            // Add the new orb as a permanent floating capsule
+                            const newCapsule = document.createElement('div');
+                            newCapsule.className = 'capsule floating';
+                            newCapsule.style.background = `radial-gradient(circle at center, white 0%, ${randomColor} 100%)`;
+                            newCapsule.style.top = '50%';
+                            newCapsule.style.left = '50%';
+                            newCapsule.style.transform = 'translate(-50%, -50%)';
+                            newCapsule.style.animationDelay = `-${Math.random() * 12}s`;
+                            document.querySelector('.globe').appendChild(newCapsule);
+                            
+                            // Reset form and animations
+                            form.reset();
+                            document.getElementById('currentDate').value = formattedDate;
+                            timeOrb.style.opacity = '0';
+                            timeOrb.classList.remove('drop-animation');
+                            timeOrb.style.top = '-50px';
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = '提交我的時光紙';
+                            
+                            // In a real application, you would send formData to your server here
+                            console.log('Form data to be sent to server:', formData);
+                        }, 2000);
+                    }, 1500);
+                }, 500);
             });
             
             // Close success message
@@ -473,6 +635,30 @@
                 const day = String(date.getDate()).padStart(2, '0');
                 const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
                 return `TM-${year}${month}${day}-${random}`;
+            }
+            
+            // Create time particles
+            function createTimeParticles() {
+                const particlesContainer = document.getElementById('timeParticles');
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Random position around the center
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 80 + 20;
+                    const x = Math.cos(angle) * distance;
+                    const y = Math.sin(angle) * distance;
+                    
+                    particle.style.left = `calc(50% + ${x}px)`;
+                    particle.style.top = `calc(50% + ${y}px)`;
+                    
+                    // Random delay
+                    particle.style.animationDelay = `${Math.random() * 8}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
             }
             
             // Create confetti effect
@@ -500,5 +686,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96656c4c3288a39d',t:'MTc1MzcxNjY4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9665c40d506c8283',t:'MTc1MzcyMDI3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
